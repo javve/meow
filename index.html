@@ -2,19 +2,34 @@
 <head>
   <title>Spirit</title>
   <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
+  <link rel="icon" sizes="40x40" href="favicon.png"  type="image/png">
+
+
   <style>
+    @font-face {
+      font-family: 'monogram';
+      src: url('monogram-extended.ttf');     
+      font-weight: normal;
+      font-style: normal;
+    }
     body {
+      font-family: monogram;
       background-color: #87bda4;
       margin:0;
       padding:0;
+      font-smooth: never;
+      -webkit-font-smoothing: none;
+      font-synthesis: none;
     }
     .container{
       display: flex;
       align-items: center;
       justify-content: center;
       height: 100vh;
+      flex-direction: column;
     }
     .cat {
       background:url(katt-Sheet.png) no-repeat 0 0;
@@ -47,11 +62,84 @@
         background-position: 100% 0 ;
       }
     }
+    .grattis {
+      position: absolute;
+      width: 300px;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #fff;
+      padding: 20px;
+      font-size: 20px;
+      border: solid 3px #000;
+      line-height: 1.1;
+      transition: all .3s ease-in-out;
+    }
+    .hide {
+      pointer-events: none;
+      opacity: 0;
+    }
+    .btn {
+      display: inline-block;
+      margin:0 auto;
+      background-color:#868ae1;
+      color:#fff;
+      padding:5px 15px;
+      cursor: pointer;
+      transition: all .2s ease-in-out;
+    }
+    .btn:hover {
+      background-color: #696dbc;
+    }
+    .btn-info {
+      display: inline-block;
+      margin:0 auto;
+      background-color:rgba(0,0,0,.1);
+      color:rgba(255,255,255,.6);
+      padding:5px 15px;
+      cursor: pointer;
+      transition: all .2s ease-in-out;
+      text-transform: uppercase;
+    }
+    .btn-info:hover {
+      background-color: rgba(0,0,0,.2);
+    }
   </style>
 </head>
 <body>
+  <div class="grattis" style="display:none;">
+    Hurra för dig elli! <br>
+    Eftersom jag vet att du inte kan ha en katt hemma så skulle jag härmed vilja överlämna Spirit.
+    Han är gillar att bli klappad på huvudet, kliad under hakan, är rumsen och dessutom helt digital.
+    <br>
+    <br>
+    Ps. just nu kan han inte så många tricks, men min känsla är att han kommer lära sig mer med tiden.<br><br>
+    Bästa (hehe)<br>
+    Jonny
+    <br><br>
+    <div style="text-align: center;">
+    <span class="btn">Säg hej</span>
+    </div>
+  </div>
   <div class="container">
     <div class="cat"></div>
+    <span class="btn-info">Info</span>
   </div>
 
+<script>
+  const message = document.querySelector('.grattis')
+  const storage = window.localStorage
+  let hideMessage = storage.getItem('hideMessage')
+  if (!hideMessage) {
+    message.style.display = 'block';
+  }
+  document.querySelector('.btn').addEventListener('click', function() {
+    message.classList.add('hide');
+  })
+
+  document.querySelector('.btn-info').addEventListener('click', function() {
+    message.classList.remove('hide');
+  })
+
+</script>
 </body>
