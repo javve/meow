@@ -134,11 +134,17 @@
   const message = document.querySelector('.grattis')
   const storage = window.localStorage
   let hideMessage = storage.getItem('hideMessage')
-  if (!hideMessage) {
+  if (hideMessage !== 'true') {
     message.style.display = 'block';
+  } else {
+    message.classList.add('hide')
+    setTimeout(function() {
+      message.style.display = 'block';
+    },500)
   }
   document.querySelector('.btn').addEventListener('click', function() {
     message.classList.add('hide');
+    storage.setItem('hideMessage', 'true')
   })
 
   document.querySelector('.btn-info').addEventListener('click', function() {
