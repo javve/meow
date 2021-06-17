@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<head>
+  <title>Spirit</title>
+  <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      background-color: #87bda4;
+      margin:0;
+      padding:0;
+    }
+    .container{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    .cat {
+      background:url(katt-Sheet.png) no-repeat 0 0;
+      background-size: 400% auto;
+      width:300px;
+      max-width: 80%;
+      image-rendering: pixelated;
+      animation-name: idle;
+      animation-duration: 5s;
+      animation-iteration-count: infinite;
+      animation-timing-function: steps(1); 
+    }
+    .cat:before {
+      display:block;
+      content: ' ';
+      padding-top:136%;
+    }
+    @keyframes idle {
+      0 {
+        background-position: 0 0 ;
+        background-color:#44f;
+      }
+      95% {
+        background-position: 33.333% 0;
+      }
+      97% {
+        background-position: 66.6666% 0 ;
+      }
+      100% {
+        background-position: 100% 0 ;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="cat"></div>
+  </div>
+
+</body>
