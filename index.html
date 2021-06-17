@@ -36,20 +36,29 @@
       flex-direction: column;
     }
     .cat {
-      background:url(katt-Sheet.png) no-repeat 0 0;
-      background-size: 400% auto;
       width:300px;
       max-width: 80%;
-      image-rendering: pixelated;
-      animation-name: idle;
-      animation-duration: 5s;
-      animation-iteration-count: infinite;
-      animation-timing-function: steps(1); 
+      position: relative;
     }
     .cat:before {
       display:block;
       content: ' ';
       padding-top:136%;
+    }
+    .cat-cat {
+      position: absolute;
+      top:0;
+      left:0;
+      height:100%;
+      width:100%;
+      background:url(katt-Sheet.png) no-repeat 0 0;
+      background-size: 400% auto;
+      image-rendering: pixelated;
+      animation-name: idle;
+      animation-duration: 5s;
+      animation-iteration-count: infinite;
+      animation-timing-function: steps(1); 
+      z-index: 10;
     }
     @keyframes idle {
       0 {
@@ -64,6 +73,38 @@
       }
       100% {
         background-position: 100% 0 ;
+      }
+    }
+    .cat-tail {
+      position: absolute;
+      top:0;
+      left:0;
+      height:100%;
+      width:100%;
+      background:url(katt-Sheet.png) no-repeat 0 0;
+      background-size: 400% auto;
+      background-position: 0 104%;
+      image-rendering: pixelated;
+      z-index: 5;
+    }
+    .cat-tail--animate {
+      animation-name: tail;
+      animation-duration: 1s;
+      animation-iteration-count: infinite;
+      animation-timing-function: steps(1); 
+
+    }
+
+    @keyframes tail {
+      0 {
+        background-position: 0 104%;
+        background-color:#44f;
+      }
+      50% {
+        background-position: 33.333% 104%;
+      }
+      100% {
+        background-position: 66.6666% 104%;
       }
     }
     .grattis {
@@ -108,6 +149,47 @@
     .btn-info:hover {
       background-color: rgba(0,0,0,.2);
     }
+    .cat-head {
+      position: absolute;
+      top: 22%;
+      left: 27%;
+      width: 43%;
+      padding-top: 20%;
+      z-index: 20;
+    }
+    .cat-neck {
+      position: absolute;
+      top: 43%;
+      left: 27%;
+      width: 43%;
+      padding-top: 20%;
+      z-index: 20;
+    }
+    .cat-message {
+      transition: all .2s ease-in-out;
+      position: absolute;
+      background-color: #fff;
+      color:#000;
+      font-size: 20px;
+      padding: 10px 15px;
+      border:solid 3px #000;
+      pointer-events: none;
+      opacity: 0;
+      transform: scale(.8);
+      z-index: 20;
+    }
+    .cat-message--show {
+      opacity: 1;
+      transform: scale(1);
+    }
+    .cat-message--1 {
+      left: 10%;
+      top:10%;
+    }
+    .cat-message--2 {
+      right: 5%;
+      top:35%;
+    }
   </style>
 </head>
 <body>
@@ -126,12 +208,22 @@
     </div>
   </div>
   <div class="container">
-    <div class="cat"></div>
+    <div class="cat">
+      <div class="cat-message cat-message--1">Meow meow!</div>
+      <div class="cat-message cat-message--2">Prrrr!</div>
+      <div class="cat-head"></div>
+      <div class="cat-neck"></div>
+      <div class="cat-cat"></div>
+      <div class="cat-tail"></div>
+    </div>
     <span class="btn-info">Info</span>
   </div>
 
 <script>
   const message = document.querySelector('.grattis')
+  const catMessage1 = document.querySelector('.cat-message--1')
+  const catMessage2 = document.querySelector('.cat-message--2')
+  const catTail = document.querySelector('.cat-tail')
   const storage = window.localStorage
   let hideMessage = storage.getItem('hideMessage')
   if (hideMessage !== 'true') {
@@ -149,6 +241,22 @@
 
   document.querySelector('.btn-info').addEventListener('click', function() {
     message.classList.remove('hide');
+  })
+  document.querySelector('.cat-head').addEventListener('click', function() {
+    catMessage1.classList.add('cat-message--show')
+    catTail.classList.add('cat-tail--animate')
+    setTimeout(function() {
+      catMessage1.classList.remove('cat-message--show')
+      catTail.classList.remove('cat-tail--animate')
+    }, 2500);
+  })
+  document.querySelector('.cat-neck').addEventListener('click', function() {
+    catMessage2.classList.add('cat-message--show')
+    catTail.classList.add('cat-tail--animate')
+    setTimeout(function() {
+      catMessage2.classList.remove('cat-message--show')
+      catTail.classList.remove('cat-tail--animate')
+    }, 2500);
   })
 
 </script>
