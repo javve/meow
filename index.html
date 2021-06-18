@@ -243,22 +243,30 @@
   document.querySelector('.btn-info').addEventListener('click', function() {
     message.classList.remove('hide');
   })
-  document.querySelector('.cat-head').addEventListener('click', function() {
+  
+  const petHead = function() {
     catMessage1.classList.add('cat-message--show')
     catTail.classList.add('cat-tail--animate')
     setTimeout(function() {
       catMessage1.classList.remove('cat-message--show')
       catTail.classList.remove('cat-tail--animate')
     }, 2500);
-  })
-  document.querySelector('.cat-neck').addEventListener('click', function() {
+  }
+  document.querySelector('.cat-head').addEventListener('touchstart', petHead, false);        
+  document.querySelector('.cat-head').addEventListener('touchmove', petHead, false);
+  document.querySelector('.cat-head').addEventListener('click', petHead)
+
+  const petNeck = function () {
     catMessage2.classList.add('cat-message--show')
     catTail.classList.add('cat-tail--animate')
     setTimeout(function() {
       catMessage2.classList.remove('cat-message--show')
       catTail.classList.remove('cat-tail--animate')
     }, 2500);
-  })
+  }
+  document.querySelector('.cat-head').addEventListener('touchstart', petNeck, false);        
+  document.querySelector('.cat-head').addEventListener('touchmove', petNeck, false);
+  document.querySelector('.cat-neck').addEventListener('click', petNeck)
 
 </script>
 </body>
