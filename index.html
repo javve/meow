@@ -3,7 +3,7 @@
   <title>Spirit</title>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
   <link rel="apple-touch-icon" sizes="57x57" href="https://images.confetticdn.com/images/scale/w_57,h_57,c_fill,f_png/event-17100/image-d179a2f7-d97b-4082-8c00-b05e84d1ae03/favicon2.png">
   <link rel="apple-touch-icon" sizes="60x60" href="https://images.confetticdn.com/images/scale/w_60,h_60,c_fill,f_png/event-17100/image-d179a2f7-d97b-4082-8c00-b05e84d1ae03/favicon2.png">
@@ -265,8 +265,8 @@
       catTail.classList.remove('cat-tail--animate')
     }, 2500);
   }
-  document.querySelector('.cat-head').addEventListener('touchstart', petHead, false);        
-  document.querySelector('.cat-head').addEventListener('touchmove', petHead, false);
+  document.querySelector('.cat-head').addEventListener('touchstart', petHead);        
+  document.querySelector('.cat-head').addEventListener('touchmove', petHead);
   document.querySelector('.cat-head').addEventListener('click', petHead)
 
   const petNeck = function () {
@@ -277,8 +277,8 @@
       catTail.classList.remove('cat-tail--animate')
     }, 2500);
   }
-  document.querySelector('.cat-head').addEventListener('touchstart', petNeck, false);        
-  document.querySelector('.cat-head').addEventListener('touchmove', petNeck, false);
+  document.querySelector('.cat-head').addEventListener('touchstart', petNeck);        
+  document.querySelector('.cat-head').addEventListener('touchmove', petNeck);
   document.querySelector('.cat-neck').addEventListener('click', petNeck)
 
 </script>
